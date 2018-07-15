@@ -1,0 +1,22 @@
+<div style="width: 40% ;margin: auto" class="text-center">
+    <form ng-controller="loginController" name="loginForm">
+        <img class="mb-4" src="css/icon.jpg" alt="" width="90" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <input type="text" id="inputPhoneNumber"
+               class="form-control" placeholder="PhoneNumber"
+               pattern="\d{11}"
+               ng-model="loginAccount.phoneNumber" required autofocus><br/>
+        <input type="password" id="inputPassword"
+               ng-model="loginAccount.password" class="form-control"
+               placeholder="Password" required>
+        <div class="mb-3">
+            <label>
+                <a ui-sref="registerView" ui-sref-active="active"> Register</a>
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block"
+                ng-disabled="loginForm.$invalid"
+                ng-click="loginClick(loginAccount)">Login</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<div ng-controller="pointController">
+    <h1 class="h2">我的积分：{{myPoint}}</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">商家名</td>
+            <td align="center">商品名</td>
+            <td align="center">商品类别</td>
+            <td align="center">兑换积分</td>
+        </tr>
+        <tr ng-if="pointMerchandiseList.length>0" ng-repeat="pointMerchandise in pointMerchandiseList">
+            <td align="center">{{pointMerchandise.sellerNickName}}</td>
+            <td align="center">{{pointMerchandise.merchandiseName}}</td>
+            <td align="center">{{pointMerchandise.tag}}</td>
+            <td align="center">{{pointMerchandise.price | number:0}}</td>
+            <td align="center" ng-init="number_t=0">
+                <button ng-click="number_t=number_t+1">+</button>
+                <span>{{number_t}}</span>
+                <button ng-click="number_t=number_t-1" ng-disabled="number_t<=0">-</button>
+                <button class="button" ng-click="exchangePointMerchandiseFun(pointMerchandise,number_t)" ng-disabled="number_t<1">兑换</button>
+            </td>
+        </tr>
+    </table>
+</div>

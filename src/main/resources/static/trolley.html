@@ -1,0 +1,24 @@
+<div ng-controller="trolleyController">
+    <h1 class="h2">购物车</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">商家名</td>
+            <td align="center">商品名</td>
+            <td align="center">商品类别</td>
+            <td align="center">单价</td>
+            <td align="center">购买数量</td>
+        </tr>
+        <tr ng-repeat="myTrolley in myTrolleyList" ng-if="myTrolleyList.length>0">
+            <td align="center">{{myTrolley.sellerNickName}}</td>
+            <td align="center">{{myTrolley.merchandiseName}}</td>
+            <td align="center">
+                <div ng-if="myTrolley.tag===1">宠物</div>
+                <div ng-if="myTrolley.tag===2">宠物粮食</div>
+                <div ng-if="myTrolley.tag===3">宠物用具</div>
+            </td>
+            <td align="center">{{myTrolley.price}}</td>
+            <td align="center">{{myTrolley.number}}</td>
+        </tr>
+    </table><br/>
+    <button class="button" ng-click="orderIndentClick()">提交订单</button>
+</div>

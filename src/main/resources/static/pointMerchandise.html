@@ -1,0 +1,29 @@
+<div ng-controller="pointMerchandiseController">
+    <table class="table table-hover">
+    <tr>
+        <td align="center">商家名</td>
+        <td align="center">商品名</td>
+        <td align="center">商品类别</td>
+        <td align="center">兑换积分</td>
+    </tr>
+    <tr ng-if="pointMerchandiseList.length>0" ng-repeat="pointMerchandise in pointMerchandiseList">
+        <td align="center">{{pointMerchandise.sellerNickName}}</td>
+        <td align="center">{{pointMerchandise.merchandiseName}}</td>
+        <td align="center">{{pointMerchandise.tag}}</td>
+        <td align="center">{{pointMerchandise.price | number:0}}</td>
+        <td align="center">
+            <button class="button" ng-click="deletePointMerchandiseFun(pointMerchandise.merchandiseId)">删除</button>
+        </td>
+    </tr>
+    </table><br/>
+    <hr/>
+    <h1 class="h2">添加积分商品</h1>
+    <form id="addPointMerchandiseForm" name="addPointMerchandiseForm">
+        <label for="addingPointMerchandiseId">商品编号</label><br/>
+        <input type="number" class="form-control" pattern="\d+" required
+               id="addingPointMerchandiseId"
+               ng-model="addingPointMerchandiseId"/><br/>
+        <button class="button" ng-disabled="addPointMerchandiseForm.$invalid"
+                ng-click="addPointMerchandiseFun(addingPointMerchandiseId)">添加</button>
+    </form>
+</div>

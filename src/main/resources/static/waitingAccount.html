@@ -1,0 +1,45 @@
+<div ng-controller="waitingAccountController">
+    <h1 class="h2">管理账号</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">账号ID</td>
+            <td align="center">注册手机号</td>
+            <td align="center">昵称</td>
+        </tr>
+        <tr ng-repeat="waitingAccount in waitingAccountList" ng-if="waitingAccountList.length>0">
+            <td align="center">{{waitingAccount.accountId}}</td>
+            <td align="center">{{waitingAccount.phoneNumber}}</td>
+            <td align="center">{{waitingAccount.nickName}}</td>
+            <td align="center"><button ng-click="permitClick(waitingAccount.accountId)">批准</button></td>
+        </tr>
+    </table><br/>
+    <hr/>
+    <h3 class="h4">添加新账号</h3>
+    <form id="addNewAccountByWorkerForm" name="addNewAccountByWorkerForm">
+        <label for="inputPhoneNumber" class="sr-only">PhoneNumber</label>
+        <input type="text" id="inputPhoneNumber" class="form-control"
+               placeholder="Your PhoneNumber"
+               ng-model="addingAccount.phoneNumber"
+               pattern="\d{11}"
+               required autofocus><br/>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword"
+               ng-model="addingAccount.password" class="form-control"
+               placeholder="Password" required><br/>
+        <label for="inputNickName" class="sr-only">NickName</label>
+        <input type="text" id="inputNickName"
+               ng-model="addingAccount.nickName" class="form-control"
+               placeholder="Like:John Bob" required><br/>
+        <input type="radio" checked
+               ng-model="addingAccount.accountLevel"
+               name="accountLevel" id="accountLevel-1" value="1" required/>
+        <label for="accountLevel-1">普通用户</label>
+        <input type="radio"
+               ng-model="addingAccount.accountLevel"
+               name="accountLevel" id="accountLevel-2" value="2" required/>
+        <label for="accountLevel-2">商家</label><br/>
+        <button class="btn btn-lg btn-primary btn-block"
+                ng-disabled="addNewAccountByWorkerForm.$invalid"
+                ng-click="addNewAccountByWorkerFun(addingAccount)">添加</button>
+    </form>
+</div>

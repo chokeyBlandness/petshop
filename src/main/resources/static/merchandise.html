@@ -1,0 +1,35 @@
+<div ng-controller="merchandiseController">
+    <h1 class="h2">我的商品</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">商品编号</td>
+            <td align="center">商品名称</td>
+            <td align="center">商品类别</td>
+            <td align="center">商品单价</td>
+        </tr>
+        <tr ng-repeat="merchandise in merchandiseList" ng-if="merchandiseList.length>0">
+            <td align="center">{{merchandise.merchandiseId}}</td>
+            <td align="center">{{merchandise.merchandiseName}}</td>
+            <td align="center">
+                <div ng-if="merchandise.tag===1">宠物</div>
+                <div ng-if="merchandise.tag===2">宠物粮食</div>
+                <div ng-if="merchandise.tag===3">宠物用具</div>
+            </td>
+            <td align="center">{{merchandise.price}}</td>
+            <td align="center"><button class="button" ng-click="deleteMerchandiseFun(merchandise.merchandiseId)">删除</button></td>
+        </tr>
+    </table>
+    <hr/>
+    <h1 class="h2">添加新商品</h1>
+    <form name="addNewMerchandiseForm" id="addNewMerchandiseForm" style="width: 500px">
+        商品名称:<input type="text" class="form-control" ng-model="newMerchandise.merchandiseName" required/><br/>
+        商品类别:<input type="radio" name="tag" ng-model="newMerchandise.tag" value="1" required id="tag-1"/>
+        <label for="tag-1">宠物</label>
+        <input type="radio" name="tag" ng-model="newMerchandise.tag" value="2" required id="tag-2"/>
+        <label for="tag-2">宠物粮食</label>
+        <input type="radio" name="tag" ng-model="newMerchandise.tag" value="2" required id="tag-3"/>
+        <label for="tag-3">宠物用具</label><br/>
+        商品价格:<input type="number" class="form-control" ng-model="newMerchandise.price" required/><br/>
+        <button ng-click="addNewMerchandiseClick(newMerchandise)" ng-disabled="addNewMerchandiseForm.$invalid">添加</button>
+    </form>
+</div>

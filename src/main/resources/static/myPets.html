@@ -1,0 +1,15 @@
+<div ng-controller="myPetsController">
+    <h1 class="h2">我的爱宠</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">宠物编号</td>
+            <td align="center">卖家昵称</td>
+            <td align="center">宠物名</td>
+        </tr>
+        <tr ng-if="myPetList.length>0" ng-repeat="myPet in myPetList">
+            <td align="center">{{myPet.petId}}</td>
+            <td align="center">{{myPet.sellerNickName}}</td>
+            <td align="center">{{myPet.petName}}</td>
+        </tr>
+    </table>
+</div>

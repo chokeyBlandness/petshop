@@ -1,0 +1,30 @@
+<div ng-controller="copeIndentController">
+    <h1 class="h2">待处理订单</h1>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">订单号</td>
+            <td align="center">下单用户号</td>
+            <td align="center">商品编号</td>
+            <td align="center">商品名称</td>
+            <td align="center">类别</td>
+            <td align="center">单价</td>
+            <td align="center">数量</td>
+            <td align="center">日期</td>
+        </tr>
+        <tr ng-if="receivingIndentList.length>0" ng-repeat="receivingIndent in receivingIndentList">
+            <td align="center">{{receivingIndent.indentId}}</td>
+            <td align="center">{{receivingIndent.accountId}}</td>
+            <td align="center">{{receivingIndent.merchandiseId}}</td>
+            <td align="center">{{receivingIndent.merchandiseName}}</td>
+            <td align="center">
+                <div ng-if="receivingIndent.tag===1">宠物</div>
+                <div ng-if="receivingIndent.tag===2">宠物粮食</div>
+                <div ng-if="receivingIndent.tag===3">宠物用具</div>
+            </td>
+            <td align="center">{{receivingIndent.price}}</td>
+            <td align="center">{{receivingIndent.number}}</td>
+            <td align="center">{{receivingIndent.date | date}}</td>
+            <td><button ng-click="receiveIndentFun(receivingIndent.indentId)">接单</button></td>
+        </tr>
+    </table>
+</div>
