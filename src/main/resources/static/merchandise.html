@@ -27,9 +27,29 @@
         <label for="tag-1">宠物</label>
         <input type="radio" name="tag" ng-model="newMerchandise.tag" value="2" required id="tag-2"/>
         <label for="tag-2">宠物粮食</label>
-        <input type="radio" name="tag" ng-model="newMerchandise.tag" value="2" required id="tag-3"/>
+        <input type="radio" name="tag" ng-model="newMerchandise.tag" value="3" required id="tag-3"/>
         <label for="tag-3">宠物用具</label><br/>
         商品价格:<input type="number" class="form-control" ng-model="newMerchandise.price" required/><br/>
-        <button ng-click="addNewMerchandiseClick(newMerchandise)" ng-disabled="addNewMerchandiseForm.$invalid">添加</button>
+        <button class="button" ng-click="addNewMerchandiseClick(newMerchandise)" ng-disabled="addNewMerchandiseForm.$invalid">添加</button>
+    </form><br/>
+    <hr/>
+    <h1 class="h2">修改商品信息</h1>
+    <form id="modifyMerchandiseInfoForm" name="modifyMerchandiseInfoForm">
+        商品编号：
+        <select ng-model="modifyingMerchandise.merchandiseId" class="custom-select" required>
+            <option ng-repeat="merchandise in merchandiseList"
+                    ng-if="merchandiseList.length>0" value="{{merchandise.merchandiseId}}">
+                {{merchandise.merchandiseId}}
+            </option>
+        </select><br/>
+        商品名称：<input type="text" ng-model="modifyingMerchandise.merchandiseName" class="form-control"/><br/>
+        商品类别：<input type="radio" name="modifyTag" ng-model="modifyingMerchandise.tag" value="1" id="tag-a"/>
+        <label for="tag-a">宠物</label>
+        <input type="radio" name="modifyTag" ng-model="modifyingMerchandise.tag" value="2" id="tag-b"/>
+        <label for="tag-b">宠物粮食</label>
+        <input type="radio" name="modifyTag" ng-model="modifyingMerchandise.tag" value="3" id="tag-c"/>
+        <label for="tag-c">宠物用具</label><br/>
+        商品价格:<input type="number" class="form-control" ng-model="modifyingMerchandise.price"/><br/>
+        <button class="button" ng-click="modifyMerchandiseFun(modifyingMerchandise)">修改</button>
     </form>
 </div>

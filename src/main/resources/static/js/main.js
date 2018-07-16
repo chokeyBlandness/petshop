@@ -145,7 +145,17 @@ angular.module("petShopModule", ['ui.router'])
             }, function (reason) {
                 console.log(reason.data);
             });
-
+        };
+        $scope.deleteTrolleyFun = function (trolleyId) {
+            var deleteTrolleyConfirm = confirm("删除此商品?");
+            if (deleteTrolleyConfirm === true) {
+                $http.post("/deleteTrolley", trolleyId).then(function (value) {
+                    alert(value.data);
+                    $scope.getMyTrolleyListFun();
+                }, function (reason) {
+                    console.log(reason.data);
+                });
+            }
         };
         $scope.getMyTrolleyListFun();
     })
@@ -259,7 +269,17 @@ angular.module("petShopModule", ['ui.router'])
                 }, function (reason) {
                     console.log(reason.data);
                 });
-
+            }
+        };
+        $scope.modifyMerchandiseFun = function (modifyingMerchandise) {
+            var modifyMerchandiseConfirm = confirm("确定修改此物品信息?");
+            if (modifyMerchandiseConfirm === true) {
+                $http.post("/modifyMerchandise", modifyingMerchandise).then(function (value) {
+                    alert(value.data);
+                    $scope.getMyMerchandiseListFun();
+                }, function (reason) {
+                    console.log(reason.data);
+                });
             }
         };
         $scope.getMyMerchandiseListFun();

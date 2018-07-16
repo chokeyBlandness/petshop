@@ -13,4 +13,6 @@ public interface TrolleyRepository extends CrudRepository<Trolley, Long> {
     void deleteTrolleysByAccountId(Long accountId);
 
     void deleteTrolleysByMerchandiseId(Long merchandiseId);
+
+    void deleteTrolleyByTrolleyId(Long trolleyId);
 }

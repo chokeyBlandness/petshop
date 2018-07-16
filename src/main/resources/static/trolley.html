@@ -18,7 +18,10 @@
             </td>
             <td align="center">{{myTrolley.price}}</td>
             <td align="center">{{myTrolley.number}}</td>
+            <td align="center">
+                <button class="button" ng-click="deleteTrolleyFun(myTrolley.trolleyId)">取消</button>
+            </td>
         </tr>
     </table><br/>
-    <button class="button" ng-click="orderIndentClick()">提交订单</button>
+    <button class="button" ng-click="orderIndentClick()" ng-disabled="myTrolleyList.length<1">提交订单</button>
 </div>

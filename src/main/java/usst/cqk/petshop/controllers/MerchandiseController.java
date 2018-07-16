@@ -138,6 +138,28 @@ public class MerchandiseController {
         return JSON.toJSONString("delete successfully");
     }
 
+    @PostMapping(path = "/modifyMerchandise")
+    public @ResponseBody
+    String modifyMerchandise(@RequestBody String requestData) {
+        Merchandise requestMerchandise = JSON.parseObject(requestData, Merchandise.class);
+        if (requestMerchandise.getMerchandiseId() == null) {
+            return JSON.toJSONString("modify failed");
+        } else {
+            Merchandise foundMerchandise = merchandiseRepository.findMerchandiseByMerchandiseId(requestMerchandise.getMerchandiseId());
+            if (requestMerchandise.getMerchandiseName() != null) {
+                foundMerchandise.setMerchandiseName(requestMerchandise.getMerchandiseName());
+            }
+            if (requestMerchandise.getTag() != null) {
+                foundMerchandise.setTag(requestMerchandise.getTag());
+            }
+            if (requestMerchandise.getPrice() != null) {
+                foundMerchandise.setPrice(requestMerchandise.getPrice());
+            }
+            merchandiseRepository.save(foundMerchandise);
+            return JSON.toJSONString("modify successfully");
+        }
+    }
+
     @PostMapping(path = "/addMerchandiseToTrolley")
     public @ResponseBody
     String addMerchandiseToTrolley(@RequestBody String requestData) {
@@ -173,6 +195,15 @@ public class MerchandiseController {
             myTransTrolleyList.add(newTransTrolley);
         }
         return JSON.toJSONString(myTransTrolleyList);
+    }
+
+    @Transactional
+    @PostMapping(path = "/deleteTrolley")
+    public @ResponseBody
+    String deleteTrolley(@RequestBody String requestData) {
+        Long requestTrolleyId = JSON.parseObject(requestData, Long.class);
+        trolleyRepository.deleteTrolleyByTrolleyId(requestTrolleyId);
+        return JSON.toJSONString("delete trolley successfully");
     }
 
 }
